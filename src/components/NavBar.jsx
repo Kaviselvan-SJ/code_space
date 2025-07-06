@@ -1,14 +1,13 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
   { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
+  { name: "Practice", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Contest", href: "#projects" },
+  { name: "Profile", href: "#contact" },
 ];
 
 export const Navbar = () => {
@@ -38,8 +37,8 @@ export const Navbar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> Kaviselvan </span>{" "}
-            Portfolio
+            <span className="text-glow text-foreground">Code</span>{""}
+            Space
           </span>
         </a>
 
