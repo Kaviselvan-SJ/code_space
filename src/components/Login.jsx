@@ -1,0 +1,75 @@
+import { useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth, provider } from "../firebase/firebaseConfig";
+import { useNavigate, Link } from "react-router-dom";
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("userName", result.user.displayName || "User");
+      localStorage.setItem("email", result.user.email);
+      navigate("/home");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      localStorage.setItem("userName", result.user.displayName || "User");
+      localStorage.setItem("email", result.user.email);
+      navigate("/home");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleGuestLogin = () => {
+  localStorage.setItem("userName", "Guest");
+  localStorage.setItem("email", "guest@codespace.com");
+  navigate("/home");
+};
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen px-4 bg-background text-foreground">
+      <div className="glass-light-card p-8 w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-4 text-glow">Welcome back to Code Space 🚀</h1>
+
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full p-2 mb-3 rounded border"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full p-2 mb-5 rounded border"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleLogin} className="w-full cosmic-button mb-2">Login</button>
+        <button onClick={handleGoogleLogin} className="w-full bg-red-500 text-white py-2 rounded mb-2 hover:bg-red-600 transition">Login with Google</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800 transition">Continue as Guest</button>
+
+        <p className="mt-4 text-sm text-gray-600">
+          Don't have an account?
+          <Link to="/" className="ml-1 text-primary hover:underline font-medium">Sign Up</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
