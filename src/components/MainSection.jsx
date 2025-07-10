@@ -1,20 +1,35 @@
 export const MainSection = () => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 gap-6">
-      <h1 className="text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white animate-fade-in">
-        CodeSpace 🚀
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 text-center gap-5 bg-gradient-to-br">
+      <h1 className="text-5xl font-extrabold drop-shadow-md">
+        Code Space
       </h1>
-      <h3 className="text-xl font-medium text-gray-600 dark:text-gray-300 animate-fade-in-slow">
-        code → summit → repeat
+
+      <h3 className="text-xl font-semibold text-gray-600">
+        code → submit → repeat
       </h3>
-      <p className="max-w-2xl text-gray-500 dark:text-gray-400 text-base sm:text-lg leading-relaxed animate-fade-in-slower">
-        Want to master Data Structures & Algorithms? <br />
-        Ready to enhance your problem-solving skills? <br />
-        <span className="font-semibold text-blue-600 dark:text-blue-400">This platform is built for you.</span>
+
+      <p className="max-w-xl text-gray-700 text-md">
+        Want to master <span className="font-medium text-indigo-600">Data Structures</span> and 
+        <span className="font-medium text-indigo-600"> Algorithms</span>? <br />
+        Want to improve your <span className="font-medium text-indigo-600">problem-solving skills</span>?
+        This platform is built for you.
       </p>
-      <a href="/login" className="mt-6 inline-block px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-lg transition duration-300 shadow-md">
-        Get Started
-      </a>
+
+      <div className="flex gap-4 mt-4">
+        <a
+          href="/"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
+        >
+          Get Started
+        </a>
+        <a
+          href="/login"
+          className="border border-blue-600 hover:bg-blue-50 text-blue-600 font-semibold px-6 py-2 rounded-lg transition duration-300"
+        >
+          Already have an account?
+        </a>
+      </div>
     </div>
   );
 };
