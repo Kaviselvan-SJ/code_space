@@ -11,7 +11,7 @@ export const Footer = () => {
 
   return (
     <footer className="py-12 px-4 bg-card relative border-t border-border mt-12 flex flex-col items-center gap-6">
-      <h2 className="text-2xl font-bold text-primary">Kaviselvan S J</h2>
+      <h2 className="text-2xl font-bold text-primary">CodeSpace</h2>
 
       {/* Navigation Links */}
       <nav className="flex flex-wrap justify-center gap-6 text-muted-foreground font-medium">
@@ -23,43 +23,9 @@ export const Footer = () => {
         <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
       </nav>
 
-      {/* Social Icons */}
-      <div className="flex justify-center gap-6">
-        <a
-          href="https://instagram.com/kaviselvan_sj"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 rounded-full bg-primary/10 text-primary hover:scale-110 transition-transform"
-        >
-          <Instagram className="h-6 w-6" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/kaviselvan-sj/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 rounded-full bg-primary/10 text-primary hover:scale-110 transition-transform"
-        >
-          <Linkedin className="h-6 w-6" />
-        </a>
-        <a
-          href="https://github.com/Kaviselvan-SJ"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 rounded-full bg-primary/10 text-primary hover:scale-110 transition-transform"
-        >
-          <Github className="h-6 w-6" />
-        </a>
-        <a
-          href="#contact"
-          className="p-3 rounded-full bg-primary/10 text-primary hover:scale-110 transition-transform"
-        >
-          <Contact2 className="h-6 w-6" />
-        </a>
-      </div>
-
       {/* Copyright */}
       <p className="text-sm text-muted-foreground text-center">
-        &copy; {year} <span className="text-primary font-medium">Kaviselvan S J</span> – All rights reserved.
+        &copy; {year} <span className="text-primary font-medium">CodeSpace</span> – All rights reserved.
       </p>
 
       {/* Scroll to Top Button (only in footer) */}

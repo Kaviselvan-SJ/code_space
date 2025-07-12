@@ -9,7 +9,7 @@ const CodeEditorWindow = ({ onChange, language, code, theme }) => {
     setValue(value);
     onChange("code", value);
   };
-
+  
   return (
     <div className="overlay rounded-md overflow-hidden w-full h-full shadow-4xl">
       <Editor

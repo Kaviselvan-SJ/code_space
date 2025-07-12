@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export const MainSection = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/editor");
+  };
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-4 text-center gap-5 bg-gradient-to-br">
       <h1 className="text-5xl font-extrabold drop-shadow-md">
@@ -9,7 +16,7 @@ export const MainSection = () => {
         code → submit → repeat
       </h3>
 
-      <p className="max-w-xl text-gray-700 text-md">
+      <p className="max-w-xl  text-md">
         Want to master <span className="font-medium text-indigo-600">Data Structures</span> and 
         <span className="font-medium text-indigo-600"> Algorithms</span>? <br />
         Want to improve your <span className="font-medium text-indigo-600">problem-solving skills</span>?
@@ -18,7 +25,7 @@ export const MainSection = () => {
 
       <div className="flex gap-4 mt-4">
         <a
-          href="/"
+          href="/editor"
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
         >
           Get Started

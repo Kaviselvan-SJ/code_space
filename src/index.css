@@ -64,25 +64,25 @@
 
 @layer base {
   :root {
-    --background: 220 20% 98%;
-    --foreground: 220 15% 15%;
+    --background: 220 20% 96%;
+    --foreground: 230 20% 20%;
 
     --card: 0 0% 100%;
-    --primary: 262 83% 67%; /* blue-violet */
+    --primary: 232 50% 45%; /* your indigo-like custom HSL */
     --primary-foreground: 0 0% 100%;
 
-    --border: 220 20% 85%;
+    --border: 232 30% 80%;
   }
 
   .dark {
-    --background: 240 20% 8%;
-    --foreground: 220 20% 90%;
+    --background: 232 30% 10%;
+    --foreground: 232 25% 90%;
 
-    --card: 240 20% 12%;
-    --primary: 262 83% 70%; /* violet in dark mode */
+    --card: 232 30% 15%;
+    --primary: 232 50% 55%; /* slightly lighter for dark */
     --primary-foreground: 0 0% 100%;
 
-    --border: 240 20% 25%;
+    --border: 232 25% 35%;
   }
 
   * {
