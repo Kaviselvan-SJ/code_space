@@ -224,11 +224,11 @@ const Landing = () => {
             <LanguagesDropdown onSelectChange={onSelectChange} />
           </div>
           {
-          /*
+          
           <div className="px-4 py-2">
             <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
           </div>
-          */
+          
           }
         </div>
 

@@ -52,15 +52,24 @@ const monacoThemes = {
 };
 
 const defineTheme = (theme) => {
-  return new Promise((res) => {
+  return new Promise((resolve, reject) => {
+    const themeFile = `/themes/${monacoThemes[theme]}.json`; // from public/
     Promise.all([
       loader.init(),
-      import(`monaco-themes/themes/${monacoThemes[theme]}.json`),
-    ]).then(([monaco, themeData]) => {
-      monaco.editor.defineTheme(theme, themeData);
-      res();
-    });
+      fetch(themeFile).then((res) => {
+        if (!res.ok) throw new Error(`Theme not found: ${themeFile}`);
+        return res.json();
+      }),
+    ])
+      .then(([monaco, themeData]) => {
+        monaco.editor.defineTheme(theme, themeData);
+        resolve();
+      })
+      .catch((err) => {
+        console.error("Error loading theme:", err);
+        reject(err);
+      });
   });
 };
 
-export { defineTheme };
+export { monacoThemes, defineTheme };
