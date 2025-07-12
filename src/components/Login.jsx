@@ -40,8 +40,8 @@ function Login() {
 };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen px-4 bg-background text-foreground">
-      <div className="glass-light-card p-8 w-full max-w-md">
+    <div className="flex flex-col items-center justify-center h-screen px-4 ">
+      <div className=" p-8 w-full max-w-md">
         <h1 className="text-3xl font-bold mb-4 text-glow">Welcome back to Code Space 🚀</h1>
 
         <input
@@ -60,10 +60,10 @@ function Login() {
         />
 
         <button onClick={handleLogin} className="w-full cosmic-button mb-2">Login</button>
-        <button onClick={handleGoogleLogin} className="w-full bg-red-500 text-white py-2 rounded mb-2 hover:bg-red-600 transition">Login with Google</button>
-        <button onClick={handleGuestLogin} className="w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800 transition">Continue as Guest</button>
+        <button onClick={handleGoogleLogin} className="w-full bg-red-500  py-2 rounded mb-2 hover:bg-red-600 transition">Login with Google</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-700  py-2 rounded hover:bg-gray-800 transition">Continue as Guest</button>
 
-        <p className="mt-4 text-sm text-gray-600">
+        <p className="mt-4 text-sm">
           Don't have an account?
           <Link to="/" className="ml-1 text-primary hover:underline font-medium">Sign Up</Link>
         </p>

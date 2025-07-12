@@ -49,7 +49,7 @@ function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-5 bg-background text-foreground px-4">
-      <div className="glass-light-card p-8 w-full max-w-md">
+      <div className=" p-8 w-full max-w-md">
         <h1 className="text-3xl font-bold mb-4 text-glow">Create your Code Space account</h1>
         
         <input
@@ -75,10 +75,10 @@ function SignUp() {
         />
 
         <button onClick={handleSignup} className="w-full cosmic-button mb-2">Sign Up</button>
-        <button onClick={handleGoogleSignup} className="w-full bg-red-500 text-white py-2 rounded mb-2 hover:bg-red-600 transition">Sign Up with Google</button>
-        <button onClick={handleGuestLogin} className="w-full bg-gray-700 text-white py-2 rounded hover:bg-gray-800 transition">Sign in as Guest</button>
+        <button onClick={handleGoogleSignup} className="w-full bg-red-500 py-2 rounded mb-2 hover:bg-red-600 transition">Sign Up with Google</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-700  py-2 rounded hover:bg-gray-800 transition">Sign in as Guest</button>
 
-        <p className="mt-4 text-sm text-gray-600">
+        <p className="mt-4 text-sm">
           Already have an account?
           <Link to="/login" className="ml-1 text-primary hover:underline font-medium">Sign In</Link>
         </p>
