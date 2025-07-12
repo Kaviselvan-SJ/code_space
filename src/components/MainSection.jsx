@@ -32,7 +32,7 @@ export const MainSection = () => {
         </a>
         <a
           href="/login"
-          className="border border-blue-600 hover:bg-blue-50 text-blue-600 font-semibold px-6 py-2 rounded-lg transition duration-300"
+          className="border border-blue-600 hover:bg-blue-200 text-blue-600 font-semibold px-6 py-2 rounded-lg transition duration-300"
         >
           Already have an account?
         </a>

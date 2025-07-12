@@ -1,45 +1,29 @@
 import { cn } from "../lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { auth } from "../firebase/firebaseConfig";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { UserProfile } from "./userProfile";
+import { ThemeToggle } from "./ThemeToggle";
+
 
 const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "Practice", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contest", href: "#projects" },
+  { name: "Home", to: "/home" },
+  { name: "Code Editor", to: "/editor" },
+  { name: "Practice", to: "/practice" },
+  { name: "Contest", to: "/contest" },
 ];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [isGuest, setIsGuest] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
-    const guestFlag = localStorage.getItem("email") === "guest@codespace.com";
-    
     if (!storedName) {
       navigate("/login");
-    } else {
-      setName(storedName);
-      setIsGuest(guestFlag);
     }
   }, [navigate]);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (e) {
-      // In case of guest, signOut will not be needed
-    }
-    localStorage.clear();
-    navigate("/");
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,40 +44,30 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a
+        {/* Logo */}
+        <Link
+          to="/home"
           className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
         >
           <span className="relative z-10">
             <span className="text-glow text-foreground">Code</span> Space
           </span>
-        </a>
+        </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex space-x-8 items-center">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex space-x-8 items-center pr-15">
           {navItems.map((item, key) => (
-            <a
+            <Link
               key={key}
-              href={item.href}
+              to={item.to}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
-          <div className="flex items-center space-x-3 ml-4">
-            <span className="text-foreground font-semibold">{name}</span>
-            {!isGuest && (
-              <button
-                onClick={handleLogout}
-                className="text-sm text-red-500 hover:text-red-600 transition"
-              >
-                Logout
-              </button>
-            )}
-          </div>
         </div>
 
-        {/* Mobile nav toggle */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
@@ -102,7 +76,7 @@ export const Navbar = () => {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Mobile nav menu */}
+        {/* Mobile Nav Menu */}
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -112,27 +86,38 @@ export const Navbar = () => {
               : "opacity-0 pointer-events-none"
           )}
         >
-          <div className="flex flex-col space-y-8 text-xl">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-            <span className="text-foreground font-semibold">{name}</span>
-            {!isGuest && (
-              <button
-                onClick={handleLogout}
-                className="text-red-500 hover:text-red-600 text-base transition"
-              >
-                Logout
-              </button>
-            )}
-          </div>
+        <div className="flex flex-col space-y-8 text-xl">
+          {navItems.map((item, key) => (
+            <Link
+              key={key}
+              to={item.to}
+              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          <button
+            onClick={() => {
+              navigate("/profile");
+              setIsMenuOpen(false);
+            }}
+            className="text-foreground hover:text-primary transition"
+          >
+            View Profile
+          </button>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              navigate("/");
+            }}
+            className="text-red-500 hover:text-red-600 transition"
+          >
+            Logout
+          </button>
+        </div>
+
         </div>
       </div>
     </nav>

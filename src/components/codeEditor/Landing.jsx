@@ -17,6 +17,7 @@ import CustomInput from "../codeEditor/CustomInput";
 import OutputDetails from "../codeEditor/OutputDetails";
 import ThemeDropdown from "../codeEditor/ThemeDropdown";
 import LanguagesDropdown from "../codeEditor/LanguagesDropdown";
+import { UserProfile } from "../userProfile";
 
 const javascriptDefault = `/**
 * Problem: Binary Search: Search a sorted array for a target value.
@@ -217,6 +218,7 @@ const Landing = () => {
       />
 
       <ThemeToggle/>
+      <UserProfile />
       <Navbar />
       <div className="relative min-h-screen flex flex-col px-4 text-center gap-5 bg-gradient-to-br pt-16">
         <div className="flex flex-row">
@@ -253,7 +255,7 @@ const Landing = () => {
                 onClick={handleCompile}
                 disabled={!code}
                 className={classnames(
-                  "mt-4 border-2 z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200  flex-shrink-0",
+                  "mt-4 border-2 z-10 rounded-md px-4 py-2 hover:shadow transition duration-200  flex-shrink-0",
                   !code ? "opacity-50" : ""
                 )}
               >

@@ -28,15 +28,7 @@ export const Footer = () => {
         &copy; {year} <span className="text-primary font-medium">CodeSpace</span> – All rights reserved.
       </p>
 
-      {/* Scroll to Top Button (only in footer) */}
-      <div className="absolute right-6 bottom-6">
-        <a
-          href="#hero"
-          className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
-        >
-          <ArrowUp size={20} />
-        </a>
-      </div>
+     
     </footer>
   );
 };
