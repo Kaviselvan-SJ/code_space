@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { CodeEditorPage } from "./pages/CodeEditorPage"
 import PracticePage from "./pages/Practice"
 import PracticeQuestions from "./pages/PracticeQuestions"
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/editor" element={<CodeEditorPage />} />
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/practice/:id" element={<PracticeQuestions />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
