@@ -29,25 +29,35 @@ export default function AdminDashboard() {
   }, []);
 
   const handleQuestionSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("/api/questions", newQuestion);
-      alert("✅ Question added successfully");
-      setNewQuestion({
-        title: "",
-        description: "",
-        constraints: "",
-        sampleTestCase: { input: "", output: "", explanation: "" },
-        topics: [],
-        testCases: [{ input: "", expectedOutput: "" }],
-      });
-    } catch (err) {
-      alert("❌ Failed to add question");
-    }
-  };
+  e.preventDefault();
+  try {
+    const res = await axios.post("/api/questions", newQuestion);
+    const addedQuestion = res.data;
+
+    alert("✅ Question added successfully");
+
+    // Log the generated ID
+    console.log("New question ID:", addedQuestion._id);
+
+    // Optional: redirect to the question view page
+    // navigate(`/questions/${addedQuestion._id}`);
+
+    setNewQuestion({
+      title: "",
+      description: "",
+      constraints: "",
+      sampleTestCase: { input: "", output: "", explanation: "" },
+      topics: [],
+      testCases: [{ input: "", expectedOutput: "" }],
+    });
+  } catch (err) {
+    alert("❌ Failed to add question");
+  }
+};
+
 
   return (
-    <div className="max-w-6xl mx-auto p-8 space-y-8">
+    <div className="max-w-6xl mx-auto p-20 space-y-8">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
       {/* Stats Section */}
@@ -66,21 +76,21 @@ export default function AdminDashboard() {
         <h2 className="text-xl font-semibold text-primary">Add New Question</h2>
 
         <input
-          className="w-full p-2 rounded border border-border"
+          className="w-full p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
           placeholder="Title"
           value={newQuestion.title}
           onChange={(e) => setNewQuestion({ ...newQuestion, title: e.target.value })}
         />
 
         <textarea
-          className="w-full p-2 rounded border border-border"
+          className="w-full p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
           placeholder="Description"
           value={newQuestion.description}
           onChange={(e) => setNewQuestion({ ...newQuestion, description: e.target.value })}
         ></textarea>
 
         <textarea
-          className="w-full p-2 rounded border border-border"
+          className="w-full p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
           placeholder="Constraints"
           value={newQuestion.constraints}
           onChange={(e) => setNewQuestion({ ...newQuestion, constraints: e.target.value })}
@@ -88,7 +98,7 @@ export default function AdminDashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <input
-            className="p-2 rounded border border-border"
+            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
             placeholder="Sample Input"
             value={newQuestion.sampleTestCase.input}
             onChange={(e) =>
@@ -103,7 +113,7 @@ export default function AdminDashboard() {
           />
 
           <input
-            className="p-2 rounded border border-border"
+            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
             placeholder="Sample Output"
             value={newQuestion.sampleTestCase.output}
             onChange={(e) =>
@@ -118,7 +128,7 @@ export default function AdminDashboard() {
           />
 
           <input
-            className="p-2 rounded border border-border"
+            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
             placeholder="Explanation"
             value={newQuestion.sampleTestCase.explanation}
             onChange={(e) =>
@@ -134,7 +144,7 @@ export default function AdminDashboard() {
         </div>
 
         <input
-          className="w-full p-2 rounded border border-border"
+          className="w-full p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
           placeholder="Topics (comma separated)"
           value={newQuestion.topics.join(",")}
           onChange={(e) =>
@@ -148,7 +158,7 @@ export default function AdminDashboard() {
         {/* Add a simple field for one test case (extendable later) */}
         <div className="grid grid-cols-2 gap-4">
           <input
-            className="p-2 rounded border border-border"
+            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
             placeholder="Test Input"
             value={newQuestion.testCases[0].input}
             onChange={(e) => {
@@ -159,7 +169,7 @@ export default function AdminDashboard() {
           />
 
           <input
-            className="p-2 rounded border border-border"
+            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
             placeholder="Expected Output"
             value={newQuestion.testCases[0].expectedOutput}
             onChange={(e) => {

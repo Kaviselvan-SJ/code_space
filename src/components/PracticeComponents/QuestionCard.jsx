@@ -7,7 +7,7 @@ export default function QuestionCard({ question }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/practice/${question.id}`);
+    navigate(`/practice/${question._id}`);
   };
 
   return (
