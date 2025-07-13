@@ -30,3 +30,16 @@ export const getQuestionById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// DELETE: Remove question by ID
+export const deleteQuestionById = async (req, res) => {
+  try {
+    const deleted = await Question.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Question not found" });
+    }
+    res.json({ message: "Question deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
