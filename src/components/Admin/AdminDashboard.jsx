@@ -9,6 +9,8 @@ export default function AdminDashboard() {
     contests: 0,
   });
 
+  const [testCaseCount, setTestCaseCount] = useState(1);
+
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     description: "",
@@ -19,48 +21,49 @@ export default function AdminDashboard() {
       explanation: "",
     },
     topics: [],
-    testCases: [
-      { input: "", expectedOutput: "" },
-    ],
+    testCases: Array(1).fill({ input: "", expectedOutput: "" }),
   });
 
   useEffect(() => {
     axios.get("/api/admin/stats").then((res) => setStats(res.data));
   }, []);
 
+  const handleTestCaseCountChange = (e) => {
+    const count = parseInt(e.target.value);
+    setTestCaseCount(count);
+    const updatedTestCases = Array.from({ length: count }, (_, i) =>
+      newQuestion.testCases[i] || { input: "", expectedOutput: "" }
+    );
+    setNewQuestion({ ...newQuestion, testCases: updatedTestCases });
+  };
+
   const handleQuestionSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post("/api/questions", newQuestion);
-    const addedQuestion = res.data;
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/questions", newQuestion);
+      const addedQuestion = res.data;
 
-    alert("✅ Question added successfully");
+      alert("✅ Question added successfully");
 
-    // Log the generated ID
-    console.log("New question ID:", addedQuestion._id);
+      console.log("New question ID:", addedQuestion._id);
 
-    // Optional: redirect to the question view page
-    // navigate(`/questions/${addedQuestion._id}`);
-
-    setNewQuestion({
-      title: "",
-      description: "",
-      constraints: "",
-      sampleTestCase: { input: "", output: "", explanation: "" },
-      topics: [],
-      testCases: [{ input: "", expectedOutput: "" }],
-    });
-  } catch (err) {
-    alert("❌ Failed to add question");
-  }
-};
-
+      setNewQuestion({
+        title: "",
+        description: "",
+        constraints: "",
+        sampleTestCase: { input: "", output: "", explanation: "" },
+        topics: [],
+        testCases: Array(testCaseCount).fill({ input: "", expectedOutput: "" }),
+      });
+    } catch (err) {
+      alert("❌ Failed to add question");
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-20 space-y-8">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
-      {/* Stats Section */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Users" value={stats.users} />
         <StatCard label="Submissions" value={stats.submissions} />
@@ -68,7 +71,6 @@ export default function AdminDashboard() {
         <StatCard label="Contests" value={stats.contests} />
       </div>
 
-      {/* Add Question Form */}
       <form
         onSubmit={handleQuestionSubmit}
         className="bg-card p-6 rounded-xl shadow space-y-4"
@@ -155,29 +157,42 @@ export default function AdminDashboard() {
           }
         />
 
-        {/* Add a simple field for one test case (extendable later) */}
-        <div className="grid grid-cols-2 gap-4">
-          <input
-            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
-            placeholder="Test Input"
-            value={newQuestion.testCases[0].input}
-            onChange={(e) => {
-              const tc = [...newQuestion.testCases];
-              tc[0].input = e.target.value;
-              setNewQuestion({ ...newQuestion, testCases: tc });
-            }}
-          />
+        <label className="block font-medium mt-4 text-gray-700 dark:text-gray-400">Number of Test Cases</label>
+        <select
+          className="w-20 p-2 pl-3 pr-8 rounded border border-border bg-background text-gray-400 dark:text-gray-400 relative"
+          value={testCaseCount}
+          onChange={handleTestCaseCountChange}
+        >
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+            <option key={num} value={num}>{num}</option>
+          ))}
+        </select>
 
-          <input
-            className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
-            placeholder="Expected Output"
-            value={newQuestion.testCases[0].expectedOutput}
-            onChange={(e) => {
-              const tc = [...newQuestion.testCases];
-              tc[0].expectedOutput = e.target.value;
-              setNewQuestion({ ...newQuestion, testCases: tc });
-            }}
-          />
+        <div className="space-y-4">
+          {newQuestion.testCases.map((tc, index) => (
+            <div key={index} className="grid grid-cols-2 gap-4">
+              <input
+                className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
+                placeholder={`Test Input #${index + 1}`}
+                value={tc.input}
+                onChange={(e) => {
+                  const updated = [...newQuestion.testCases];
+                  updated[index].input = e.target.value;
+                  setNewQuestion({ ...newQuestion, testCases: updated });
+                }}
+              />
+              <input
+                className="p-2 rounded border border-border placeholder-gray-700 dark:placeholder-gray-400"
+                placeholder={`Expected Output #${index + 1}`}
+                value={tc.expectedOutput}
+                onChange={(e) => {
+                  const updated = [...newQuestion.testCases];
+                  updated[index].expectedOutput = e.target.value;
+                  setNewQuestion({ ...newQuestion, testCases: updated });
+                }}
+              />
+            </div>
+          ))}
         </div>
 
         <button type="submit" className="bg-primary text-primary-foreground px-4 py-2 rounded-xl">
