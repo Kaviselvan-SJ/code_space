@@ -61,7 +61,7 @@ function Login() {
 
         <button onClick={handleLogin} className="w-full bg-indigo-500  py-2 rounded mb-2 hover:bg-indigo-600 transition">Login</button>
         <button onClick={handleGoogleLogin} className="w-full bg-red-500  py-2 rounded mb-2 hover:bg-red-600 transition">Login with Google</button>
-        <button onClick={handleGuestLogin} className="w-full bg-gray-700  py-2 rounded hover:bg-gray-800 transition">Continue as Guest</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-500  py-2 rounded hover:bg-gray-600 transition">Continue as Guest</button>
 
         <p className="mt-4 text-sm">
           Don't have an account?

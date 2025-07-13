@@ -76,7 +76,7 @@ function SignUp() {
 
         <button onClick={handleSignup} className="w-full bg-indigo-500  py-2 rounded mb-2 hover:bg-indigo-600 transition">Sign Up</button>
         <button onClick={handleGoogleSignup} className="w-full bg-red-500 py-2 rounded mb-2 hover:bg-red-600 transition">Sign Up with Google</button>
-        <button onClick={handleGuestLogin} className="w-full bg-gray-700  py-2 rounded hover:bg-gray-800 transition">Sign in as Guest</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-500  py-2 rounded hover:bg-gray-600 transition">Sign in as Guest</button>
 
         <p className="mt-4 text-sm">
           Already have an account?
