@@ -2,6 +2,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuestionList from "../components/PracticeComponents/QuestionsList"
+import { ThemeToggle } from "../components/ThemeToggle";
+import { Navbar } from "../components/NavBar";
+import { Footer } from "../components/Footer";
+import { UserProfile } from "../components/userProfile";
 
 export default function Practice() {
   const [questions, setQuestions] = useState([]);
@@ -21,9 +25,17 @@ export default function Practice() {
   }, []);
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+  <>
+    
+    <ThemeToggle />
+    <UserProfile />
+    <Navbar />
+    <div className="relative min-h-screen flex flex-col justify-center px-4 text-center gap-5 bg-gradient-to-br" >
       <h1 className="text-3xl font-bold mb-6">Practice Problems</h1>
       {loading ? <p>Loading...</p> : <QuestionList questions={questions} />}
     </div>
+    <Footer />
+  </>
+    
   );
 }
