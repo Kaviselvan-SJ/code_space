@@ -15,6 +15,7 @@ export default function PracticeQuestions() {
     <ThemeToggle/>
     <Landing/>
     <Footer/>
+    
     </>
   );
 }
