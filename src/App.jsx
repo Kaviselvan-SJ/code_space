@@ -8,6 +8,7 @@ import PracticePage from "./pages/Practice"
 import PracticeQuestions from "./pages/PracticeQuestions"
 import { Admin } from "./pages/Admin"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Profile } from "./pages/Profile"
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
@@ -29,6 +31,7 @@ function App() {
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/practice/:id" element={<PracticeQuestions />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
