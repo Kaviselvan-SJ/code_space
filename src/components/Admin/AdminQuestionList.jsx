@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "../ui/Button";
@@ -45,15 +44,14 @@ export default function AdminQuestionList() {
       {questions.length === 0 ? (
         <p>No questions available.</p>
       ) : (
-        questions.map((q) => (
+        questions.map((q, index) => (
           <div
             key={q._id}
-            className="border border-border rounded-lg p-4 flex items-start justify-between gap-4"
+            className="border border-border rounded-lg px-4 py-3 flex items-center justify-between gap-4"
           >
-            <div>
-              <h3 className="text-lg font-semibold">{q.title}</h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">{q.description}</p>
-            </div>
+            <h3 className="text-base font-medium">
+              {index + 1}. {q.title}
+            </h3>
             <Button
               variant="destructive"
               onClick={() => handleDelete(q._id)}
