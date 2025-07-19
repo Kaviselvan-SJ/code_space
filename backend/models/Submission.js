@@ -7,7 +7,7 @@ const submissionSchema = new mongoose.Schema(
       required: true,
     },
     questionId: {
-      type: mongoose.Schema.Types.ObjectId, // ensure this matches your Question model
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Question",
       required: true,
     },

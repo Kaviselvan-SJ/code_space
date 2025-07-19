@@ -2,6 +2,8 @@ import { Home } from "./pages/Home"
 import { NotFound } from "./pages/NotFound"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
+import CompanyLogin from "./components/CompanyLogin"
+import CompanySignUp from "./components/CompanySignUp"
 import { useEffect } from "react"
 import { CodeEditorPage } from "./pages/CodeEditorPage"
 import PracticePage from "./pages/Practice"
@@ -26,6 +28,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/company-signup" element={<CompanySignUp />} />
+        <Route path="/company-login" element={<CompanyLogin />} />  
         <Route path="/home" element={<Home />} />
         <Route path="/editor" element={<CodeEditorPage />} />
         <Route path="/practice" element={<PracticePage />} />

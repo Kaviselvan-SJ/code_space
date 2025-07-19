@@ -1,5 +1,6 @@
   // POST /api/submissions
   import mongoose from "mongoose";
+  import Submission from "../models/Submission.js";
 
   export const createSubmission = async (req, res) => {
     try {
@@ -27,25 +28,47 @@
 
 
 
+// GET /api/submissions/:questionId?userId=abc123
+export const getSubmissionsByQuestionId = async (req, res) => {
+  try {
+    const { id } = req.params; // questionId
+    const { userId } = req.query;
 
-
-  // GET /api/submissions/:id  (where :id is the questionId)
-
-  export const getSubmissionsByQuestionId = async (req, res) => {
-    try {
-      const { id } = req.params;
-
-      if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Invalid questionId format" });
-      }
-      //console.log("Looking for submissions with questionId:", id);
-
-      const submissions = await Submission.find({
-        questionId: new mongoose.Types.ObjectId(id)
-      }).sort({ createdAt: -1 });
-
-      res.json(submissions);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
+    const filter = { questionId: new mongoose.Types.ObjectId(id) };
+    if (userId) {
+      filter.userId = userId;
     }
-  };
+
+    const submissions = await Submission.find(filter).sort({ createdAt: -1 });
+
+    res.json(submissions);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+// Delete all submissions for a given user and question
+export const deleteSubmissionsByUser = async (req, res) => {
+  try {
+    const { questionId } = req.params;
+    const { userId } = req.query;
+
+    if (!questionId || !userId) {
+      return res.status(400).json({ error: "Missing questionId or userId" });
+    }
+
+    const result = await Submission.deleteMany({
+      questionId,
+      userId,
+    });
+
+    res.status(200).json({
+      message: "Submissions deleted",
+      deletedCount: result.deletedCount,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+

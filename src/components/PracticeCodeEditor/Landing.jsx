@@ -18,6 +18,7 @@ import { defineTheme } from "../../lib/defineThemes";
 
 const Landing = () => {
   const { id } = useParams();
+  const userId = localStorage.getItem("email") || "guest@codespace.com";
 
   const [code, setCode] = useState("// Write your code here...");
   const [theme, setTheme] = useState("cobalt");
@@ -51,7 +52,7 @@ const Landing = () => {
     }
 
     try {
-      const subRes = await axios.get(`/api/submissions/${id}`);
+      const subRes = await axios.get(`/api/submissions/${id}?userId=${userId}`);
       setSubmissions(subRes.data);
     } catch (error) {
       console.error("Submission history fetch failed", error);
@@ -182,16 +183,13 @@ const Landing = () => {
     const message = `${passed}/${testCases.length} test cases passed`;
 
     try {
-      const userEmail = localStorage.getItem("email") || "guest@codespace.com";
-
       await axios.post("/api/submissions", {
-        userId: userEmail,
+        userId,
         questionId: id,
         code,
         status: message,
         language: language?.label,
       });
-
 
       fetchQuestion(); // refresh history
     } catch (e) {
@@ -203,6 +201,16 @@ const Landing = () => {
       : showErrorToast(message);
 
     setIsSubmitting(false);
+  };
+
+  const handleClearSubmissions = async () => {
+    try {
+      await axios.delete(`/api/submissions/${id}?userId=${userId}`);
+      toast.success("Submission history cleared.");
+      fetchQuestion();
+    } catch (err) {
+      toast.error("Failed to clear submission history.");
+    }
   };
 
   const showSuccessToast = (msg) => {
@@ -233,7 +241,17 @@ const Landing = () => {
               </div>
 
               <div className="mt-6">
-                <h2 className="text-xl font-semibold mb-2">Submission History</h2>
+                <div className="flex justify-between items-center mb-2">
+                  <h2 className="text-xl font-semibold">Submission History</h2>
+                  {submissions.length > 0 && (
+                    <button
+                      onClick={handleClearSubmissions}
+                      className="text-sm text-red-500 hover:underline"
+                    >
+                      Clear History
+                    </button>
+                  )}
+                </div>
                 <div className="bg-muted rounded p-2 max-h-60 overflow-y-auto text-sm">
                   {submissions.length === 0 ? (
                     <p className="text-muted-foreground">No submissions yet.</p>

@@ -1,8 +1,8 @@
+// SignUp.jsx
 import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
-  signInAnonymously,
   signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../firebase/firebaseConfig";
@@ -12,17 +12,19 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async () => {
     try {
+      setError("");
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(userCredential.user, { displayName: name });
       localStorage.setItem("userName", name);
       localStorage.setItem("email", email);
       navigate("/home");
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
     }
   };
 
@@ -47,11 +49,15 @@ function SignUp() {
     navigate("/home");
   };
 
+  const handleCompanySignup = () => {
+    navigate("/signup-company");
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-5 bg-background text-foreground px-4">
-      <div className=" p-8 w-full max-w-md">
+      <div className="p-8 w-full max-w-md">
         <h1 className="text-3xl font-bold mb-4 text-glow">Create your Code Space account</h1>
-        
+
         <input
           type="text"
           placeholder="Full Name"
@@ -74,13 +80,19 @@ function SignUp() {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <button onClick={handleSignup} className="w-full bg-indigo-500  py-2 rounded mb-2 hover:bg-indigo-600 transition">Sign Up</button>
-        <button onClick={handleGoogleSignup} className="w-full bg-red-500 py-2 rounded mb-2 hover:bg-red-600 transition">Sign Up with Google</button>
-        <button onClick={handleGuestLogin} className="w-full bg-gray-500  py-2 rounded hover:bg-gray-600 transition">Sign in as Guest</button>
+        {error && <p className="text-red-500 text-sm mb-3 text-center">{error}</p>}
 
-        <p className="mt-4 text-sm">
-          Already have an account?
-          <Link to="/login" className="ml-1 text-primary hover:underline font-medium">Sign In</Link>
+        <button onClick={handleSignup} className="w-full bg-indigo-500 py-2 rounded mb-2 hover:bg-indigo-600 transition">Sign Up</button>
+        <button onClick={handleGoogleSignup} className="w-full bg-red-500 py-2 rounded mb-2 hover:bg-red-600 transition">Sign Up with Google</button>
+        <button onClick={handleGuestLogin} className="w-full bg-gray-500 py-2 rounded hover:bg-gray-600 transition">Sign in as Guest</button>
+        <button onClick={handleCompanySignup} className="w-full bg-yellow-500 py-2 rounded hover:bg-yellow-600 transition mt-2">Sign Up as Company</button>
+
+        <p className="mt-4 text-sm text-center">
+          Already have an account?{" "}
+          <Link to="/login" className="text-primary hover:underline font-medium">Login</Link>
+        </p>
+        <p className="mt-1 text-sm text-center">
+          <Link to="/company-login" className="text-primary hover:underline font-medium">Login as Company</Link>
         </p>
       </div>
     </div>
