@@ -16,7 +16,7 @@ export function Profile() {
       <UserProfile />
       <Navbar />
           
-      <div className="max-w-md mx-auto py-40 px-4">
+      <div className="max-w-md mx-auto py-4 px-4">
         {!isGuest ? (
           <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 shadow-md">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">👤 Profile</h2>

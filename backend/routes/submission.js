@@ -2,6 +2,7 @@ import express from "express";
 import {
   createSubmission,
   getSubmissionsByQuestionId,
+  deleteSubmissionsByUser,
 } from "../controllers/submissionController.js";
 
 const router = express.Router();
