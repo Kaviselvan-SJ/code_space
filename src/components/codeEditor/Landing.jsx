@@ -24,29 +24,40 @@ const javascriptDefault = `/**
 */
 
 // Time: O(log n)
-const binarySearch = (arr, target) => {
- return binarySearchHelper(arr, target, 0, arr.length - 1);
-};
+public class Main {
 
-const binarySearchHelper = (arr, target, start, end) => {
- if (start > end) {
-   return false;
- }
- let mid = Math.floor((start + end) / 2);
- if (arr[mid] === target) {
-   return mid;
- }
- if (arr[mid] < target) {
-   return binarySearchHelper(arr, target, mid + 1, end);
- }
- if (arr[mid] > target) {
-   return binarySearchHelper(arr, target, start, mid - 1);
- }
-};
+    public static int binarySearch(int[] arr, int target) {
+        int low = 0, high = arr.length - 1;
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const target = 5;
-console.log(binarySearch(arr, target));
+        while (low <= high) {
+            int mid = low + (high - low) / 2; // prevents overflow
+
+            if (arr[mid] == target) {
+                return mid; // Found target
+            } else if (arr[mid] < target) {
+                low = mid + 1; // Search right half
+            } else {
+                high = mid - 1; // Search left half
+            }
+        }
+
+        return -1; // Target not found
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5,6,7,8,9,10};
+        int target = 5;
+
+        int result = binarySearch(arr, target);
+
+        if (result != -1) {
+            System.out.println("Target found at index: " + result);
+        } else {
+            System.out.println("Target not found in the array.");
+        }
+    }
+}
+
 `;
 
 const Landing = () => {
