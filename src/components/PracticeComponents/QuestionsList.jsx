@@ -6,9 +6,9 @@ export default function QuestionList({ questions }) {
   }
 
   return (
-    <div className="grid gap-5">
-      {questions.map((question) => (
-        <QuestionCard key={question._id} question={question} />
+    <div className="grid gap-4">
+      {questions.map((question, index) => (
+        <QuestionCard key={question._id} question={question} index={index} />
       ))}
     </div>
   );
