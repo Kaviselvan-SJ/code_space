@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
+  const navigate = useNavigate(); 
   const [stats, setStats] = useState({
     users: 0,
     submissions: 0,
@@ -64,12 +66,22 @@ export default function AdminDashboard() {
     <div className="max-w-6xl mx-auto p-20 space-y-8">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
+      
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Users" value={stats.users} />
         <StatCard label="Submissions" value={stats.submissions} />
         <StatCard label="Companies" value={stats.companies} />
         <StatCard label="Contests" value={stats.contests} />
       </div>
+
+       {/* Create Contest Button */}
+      <button
+        onClick={() => navigate("/admin/create-contest")}
+        className="bg-blue-600 text-white px-4 py-2 rounded-xl shadow hover:bg-blue-700"
+      >
+        ➕ Create Contest
+      </button>
 
       <form
         onSubmit={handleQuestionSubmit}

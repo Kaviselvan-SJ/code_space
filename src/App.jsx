@@ -11,6 +11,7 @@ import PracticeQuestions from "./pages/PracticeQuestions"
 import { Admin } from "./pages/Admin"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Profile } from "./pages/Profile"
+import { CreateContestPage } from "./pages/CreateContestPage"
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/practice/:id" element={<PracticeQuestions />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/admin/create-contest" element={<CreateContestPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
