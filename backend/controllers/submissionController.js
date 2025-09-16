@@ -72,3 +72,31 @@ export const deleteSubmissionsByUser = async (req, res) => {
   }
 };
 
+
+// GET /api/submissions/leaderboard
+
+export const getLeaderboard = async (req, res) => {
+  try {
+    const leaderboard = await Submission.aggregate([
+      {
+        $group: {
+          _id: "$userId",
+          submissionCount: { $sum: 1 },
+        },
+      },
+      { $sort: { submissionCount: -1 } }, // highest first
+      { $limit: 10 }, // top 10 users
+    ]);
+
+    // Map to { rank, userId, userName }
+    const leaderboardWithRank = leaderboard.map((user, index) => ({
+      rank: index + 1,
+      userId: user._id,
+      userName: user._id, // replace with actual User model lookup if available
+    }));
+
+    res.json(leaderboardWithRank);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

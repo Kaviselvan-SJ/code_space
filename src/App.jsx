@@ -12,6 +12,7 @@ import { Admin } from "./pages/Admin"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Profile } from "./pages/Profile"
 import { CreateContestPage } from "./pages/CreateContestPage"
+import { Contest } from "./pages/Contest"
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/company-signup" element={<CompanySignUp />} />
         <Route path="/company-login" element={<CompanyLogin />} />  
         <Route path="/home" element={<Home />} />
+        <Route path="/contest" element={<Contest />} />
         <Route path="/editor" element={<CodeEditorPage />} />
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/practice/:id" element={<PracticeQuestions />} />
