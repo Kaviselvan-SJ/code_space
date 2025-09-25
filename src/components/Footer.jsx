@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Instagram,
   Linkedin,
@@ -23,23 +24,23 @@ export const Footer = () => {
       {/* Navigation Links */}
       <nav className="flex flex-wrap justify-center gap-6 text-muted-foreground font-medium">
         {navItems.map((item) => (
-          <a
+          <Link
             key={item.name}
-            href={item.to}
+            to={item.to}
             className="hover:text-primary transition-colors"
           >
             {item.name}
-          </a>
+          </Link>
         ))}
       </nav>
 
       {/* Admin Login Button */}
-      <a
-        href="/admin"
+      <Link
+        to="/admin"
         className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium shadow hover:bg-primary/90 transition"
       >
         Admin Login
-      </a>
+      </Link>
 
       {/* Copyright */}
       <p className="text-sm text-muted-foreground text-center">
