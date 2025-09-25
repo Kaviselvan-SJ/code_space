@@ -7,7 +7,6 @@ import adminRoutes from "./routes/adminRoutes.js";
 import submissionRoutes from "./routes/submission.js";
 import contestRoutes from "./routes/contestRoutes.js";
 
-
 dotenv.config();
 connectDB();
 
