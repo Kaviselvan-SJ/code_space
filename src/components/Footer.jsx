@@ -6,6 +6,13 @@ import {
   ArrowUp,
 } from "lucide-react";
 
+const navItems = [
+  { name: "Home", to: "/home" },
+  { name: "Code Editor", to: "/editor" },
+  { name: "Practice", to: "/practice" },
+  { name: "Contest", to: "/contest" },
+];
+
 export const Footer = () => {
   const year = new Date().getFullYear();
 
@@ -15,20 +22,29 @@ export const Footer = () => {
 
       {/* Navigation Links */}
       <nav className="flex flex-wrap justify-center gap-6 text-muted-foreground font-medium">
-        <a href="#hero" className="hover:text-primary transition-colors">Home</a>
-        <a href="#about" className="hover:text-primary transition-colors">About</a>
-        <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
-        <a href="#experience" className="hover:text-primary transition-colors">Experience</a>
-        <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
-        <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+        {navItems.map((item) => (
+          <a
+            key={item.name}
+            href={item.to}
+            className="hover:text-primary transition-colors"
+          >
+            {item.name}
+          </a>
+        ))}
       </nav>
+
+      {/* Admin Login Button */}
+      <a
+        href="/admin"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium shadow hover:bg-primary/90 transition"
+      >
+        Admin Login
+      </a>
 
       {/* Copyright */}
       <p className="text-sm text-muted-foreground text-center">
         &copy; {year} <span className="text-primary font-medium">CodeSpace</span> – All rights reserved.
       </p>
-
-     
     </footer>
   );
 };
