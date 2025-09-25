@@ -16,7 +16,7 @@ export default function Practice() {
   useEffect(() => {
     if (!isGuest) {
       axios
-        .get("/api/questions")
+        .get(`${window.API_URL}/api/questions`)
         .then((res) => {
           setQuestions(res.data);
           setLoading(false);

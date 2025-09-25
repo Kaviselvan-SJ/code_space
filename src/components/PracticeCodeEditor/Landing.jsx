@@ -43,7 +43,7 @@ const Landing = () => {
 
   const fetchQuestion = async () => {
     try {
-      const questionRes = await axios.get(`/api/questions/${id}`);
+      const questionRes = await axios.get(`${window.API_URL}/api/questions/${id}`);
       setQuestion(questionRes.data);
       setTestCases(questionRes.data.testCases || []);
       setReadOnlyInput(questionRes.data.testCases?.[0]?.input || "");
@@ -52,7 +52,7 @@ const Landing = () => {
     }
 
     try {
-      const subRes = await axios.get(`/api/submissions/${id}?userId=${userId}`);
+      const subRes = await axios.get(`${window.API_URL}/api/submissions/${id}?userId=${userId}`);
       setSubmissions(subRes.data);
     } catch (error) {
       console.error("Submission history fetch failed", error);
@@ -183,7 +183,7 @@ const Landing = () => {
     const message = `${passed}/${testCases.length} test cases passed`;
 
     try {
-      await axios.post("/api/submissions", {
+      await axios.post(`${window.API_URL}/api/submissions`, {
         userId,
         questionId: id,
         code,
@@ -205,7 +205,7 @@ const Landing = () => {
 
   const handleClearSubmissions = async () => {
     try {
-      await axios.delete(`/api/submissions/${id}?userId=${userId}`);
+      await axios.delete(`${window.API_URL}/api/submissions/${id}?userId=${userId}`);
       toast.success("Submission history cleared.");
       fetchQuestion();
     } catch (err) {

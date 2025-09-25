@@ -15,13 +15,13 @@ export default function CreateContest() {
 
   useEffect(() => {
     // Fetch all questions to allow selection
-    axios.get("/api/questions").then((res) => setAvailableProblems(res.data));
+    axios.get(`${window.API_URL}/api/questions`).then((res) => setAvailableProblems(res.data));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/contests", contest);
+      const res = await axios.post(`${window.API_URL}/api/contests`, contest);
       alert("✅ Contest created successfully!");
       console.log("Contest ID:", res.data._id);
 

@@ -9,7 +9,7 @@ export default function AdminQuestionList() {
   // Fetch all questions
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("/api/questions");
+      const res = await axios.get(`${window.API_URL}/api/questions`);
       setQuestions(res.data);
     } catch (err) {
       console.error("Failed to load questions:", err);
@@ -28,7 +28,7 @@ export default function AdminQuestionList() {
     if (!confirm) return;
 
     try {
-      await axios.delete(`/api/questions/${id}`);
+      await axios.delete(`${window.API_URL}/api/questions/${id}`);
       setQuestions((prev) => prev.filter((q) => q._id !== id));
     } catch (err) {
       console.error("Failed to delete question:", err);

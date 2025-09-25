@@ -8,7 +8,7 @@ export default function ContestList() {
 
   useEffect(() => {
     axios
-      .get("/api/contests")
+      .get(`${window.API_URL}/api/contests`)
       .then((res) => setContests(res.data))
       .catch(() => alert("❌ Failed to load contests"));
   }, []);

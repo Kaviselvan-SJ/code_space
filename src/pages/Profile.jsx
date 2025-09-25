@@ -13,7 +13,7 @@ export function Profile() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch("/api/submissions/leaderboard/top")
+    fetch(`${window.API_URL}/api/submissions/leaderboard/top`)
       .then((res) => res.json())
       .then((data) => setLeaderboard(data))
       .catch((err) => console.error("Error fetching leaderboard:", err));

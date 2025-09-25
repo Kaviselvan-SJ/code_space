@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 export default function AdminDashboard() {
   const navigate = useNavigate(); 
   const [stats, setStats] = useState({
@@ -27,7 +30,7 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    axios.get("/api/admin/stats").then((res) => setStats(res.data));
+    axios.get(`${window.API_URL}/api/admin/stats`).then((res) => setStats(res.data));
   }, []);
 
   const handleTestCaseCountChange = (e) => {
@@ -42,7 +45,7 @@ export default function AdminDashboard() {
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/questions", newQuestion);
+      const res = await axios.post(`${window.API_URL}/api/questions`, newQuestion);
       const addedQuestion = res.data;
 
       alert("✅ Question added successfully");
