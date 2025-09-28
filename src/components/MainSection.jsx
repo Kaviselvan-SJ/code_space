@@ -25,13 +25,13 @@ export const MainSection = () => {
 
       <div className="flex gap-4 mt-4">
         <a
-          href="/editor"
+          href="#/editor"
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
         >
           Get Started
         </a>
         <a
-          href="/login"
+          href="#/login"
           className="border border-blue-600 hover:bg-blue-200 text-blue-600 font-semibold px-6 py-2 rounded-lg transition duration-300"
         >
           Already have an account?
