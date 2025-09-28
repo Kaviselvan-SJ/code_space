@@ -9,7 +9,7 @@ import { CodeEditorPage } from "./pages/CodeEditorPage"
 import PracticePage from "./pages/Practice"
 import PracticeQuestions from "./pages/PracticeQuestions"
 import { Admin } from "./pages/Admin"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import {  Route, Routes,HashRouter } from "react-router-dom"
 import { Profile } from "./pages/Profile"
 import { CreateContestPage } from "./pages/CreateContestPage"
 import { Contest } from "./pages/Contest"
@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
 
       <Routes>
         <Route path="/" element={<SignUp />} />
@@ -42,7 +42,7 @@ function App() {
         <Route path="/admin/create-contest" element={<CreateContestPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
