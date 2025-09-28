@@ -100,17 +100,6 @@ function Login() {
             Sign Up
           </Link>
         </p>
-
-        {/* 🔽 New: Login as Company Link */}
-        <p className="mt-2 text-sm text-center">
-          Are you a company?
-          <Link
-            to="/company-login"
-            className="ml-1 text-blue-600 hover:underline font-medium"
-          >
-            Login as Company
-          </Link>
-        </p>
       </div>
     </div>
   );
