@@ -12,6 +12,7 @@ const navItems = [
   { name: "Code Editor", to: "/editor" },
   { name: "Practice", to: "/practice" },
   { name: "Contest", to: "/contest" },
+  { name: "Contact", to: "/contact" },
 ];
 
 export const Footer = () => {

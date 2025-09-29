@@ -13,6 +13,7 @@ import {  Route, Routes,HashRouter } from "react-router-dom"
 import { Profile } from "./pages/Profile"
 import { CreateContestPage } from "./pages/CreateContestPage"
 import { Contest } from "./pages/Contest"
+import { Contact } from "./pages/ContactPage"
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/practice/:id" element={<PracticeQuestions />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin/create-contest" element={<CreateContestPage />} />
         <Route path="*" element={<NotFound />} />
