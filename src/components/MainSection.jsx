@@ -19,7 +19,7 @@ export const MainSection = () => {
           code → submit → repeat
         </h3>
         <p className="max-w-2xl mt-4 text-lg ">
-          Want to master <span className="font-medium text-indigo-600">Data Structures</span> 
+          Want to master <span className="font-medium text-indigo-600">Data Structures </span> 
           and <span className="font-medium text-indigo-600">Algorithms</span>? <br />
           Want to improve your <span className="font-medium text-indigo-600">problem-solving skills</span>?  
           This platform is built for you.
