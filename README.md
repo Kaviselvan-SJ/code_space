@@ -24,7 +24,7 @@ It allows **candidates** to solve problems and participate in contests, **compan
 | **Backend**            | Node.js, Express.js             |
 | **Database**           | MongoDB (Mongoose ORM)          |
 | **Code Execution**     | Judge0 API                      |
-| **Authentication**     | JWT, bcrypt                     |
+| **Authentication**     | Firebase                        |
 | **Hosting (Optional)** | Render / Vercel / MongoDB Atlas |
 
 ---
