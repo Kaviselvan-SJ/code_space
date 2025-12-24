@@ -1,4 +1,4 @@
-# 🧑‍💻 CodeSpace — Online Coding Platform
+# 🧑‍💻 CodeSpace - Online Coding Platform
 
 **CodeSpace** is a full-stack web platform designed for coding practice, contests, and company-driven recruitment challenges.  
 It allows **candidates** to solve problems and participate in contests, **companies** to host challenges, and **admins** to manage the entire platform — all in one place.
