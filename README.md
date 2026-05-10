@@ -1,20 +1,54 @@
 # 🧑‍💻 CodeSpace — Online Coding Platform
 
-**CodeSpace** is a full-stack web platform designed for coding practice, contests, and company-driven recruitment challenges.  
-It allows **candidates** to solve problems and participate in contests, **companies** to host challenges, and **admins** to manage the entire platform — all in one place.
+**CodeSpace** is a full-stack web platform designed for coding practice and problem-solving.  
+It allows **candidates** to practice coding questions, submit solutions, and **admins** to manage the entire platform — all in one place.
 
 ---
 
-## 🚀 Features
+## 🚀 Active Features
 
-- 👨‍🎓 **Candidate Dashboard:** Practice coding problems, attend live contests, and view submissions.
-- 🏢 **Company Portal:** Create and manage company profiles, host specific hiring challenges.
-- 🛠️ **Admin Panel:** Comprehensive management of users, problems, contests, and overall platform monitoring.
-- 💻 **Online Code Execution:** Real-time code compilation and execution for multiple languages powered by **Judge0 API**.
-- 🧾 **Leaderboard System:** Displays user rankings dynamically based on contest performance.
-- 🔒 **Authentication & Authorization:** Secure, role-based login and access control (Candidate, Company, Admin) using **Firebase Auth**.
-- 🎨 **Responsive UI:** Modern, dynamic, and responsive interface built with **React.js**, **Tailwind CSS**, and **Lucide Icons** with built-in Dark Mode support.
-- 📝 **Integrated Code Editor:** Rich code editing experience powered by **Monaco Editor**.
+- 👨‍🎓 **Candidate Dashboard:** Practice coding problems across different difficulties, submit code, and view submission history.
+- 🛠️ **Admin Panel:** Comprehensive management of users, coding problems, and overall platform monitoring.
+- 💻 **Online Code Execution:** Real-time code compilation and execution for multiple programming languages powered by the **Judge0 API**.
+- 🔒 **Authentication & Authorization:** Secure, role-based login and access control (Candidate, Admin) using **Firebase Authentication**.
+- 🎨 **Responsive UI:** Modern, dynamic, and responsive interface built with **React.js**, **Tailwind CSS**, and **Lucide Icons** featuring built-in Dark Mode support.
+- 📝 **Integrated Code Editor:** Rich code editing experience powered by **Monaco Editor** with syntax highlighting.
+- 📊 **Submissions Tracking:** Detailed tracking of users' submitted code, execution status (Pass/Fail), and programming language used.
+
+## 🚧 Planned Features (Coming Soon)
+- 🏆 **Contests:** Live coding competitions with a real-time leaderboard and rankings based on contest performance.
+- 🏢 **Company Portal:** Dedicated portal for companies to create and manage profiles, and host specific hiring challenges.
+- 🧾 **Global Leaderboard System:** Display user rankings dynamically based on overall performance.
+
+---
+
+## 🏛️ System Architecture
+
+CodeSpace is built using a modern, decoupled client-server architecture:
+
+### 1. Frontend (Client-Side)
+- **Framework:** React.js powered by Vite for rapid development and optimized builds.
+- **Routing:** Handled via `react-router-dom` for seamless Single Page Application (SPA) navigation.
+- **Code Editor Integration:** Utilizes `@monaco-editor/react` to provide a VS Code-like coding environment directly in the browser.
+- **Authentication Flow:** Users log in using Firebase Authentication. The client receives a JWT, which is then used to securely access backend resources.
+- **API Communication:** Axios is used to send asynchronous HTTP requests to the backend API and external services (like RapidAPI).
+
+### 2. Backend (Server-Side)
+- **Environment:** Node.js with Express.js routing.
+- **RESTful API:** Structured into modular routes (`questionRoutes`, `submissionRoutes`, `adminRoutes`) and corresponding controllers.
+- **Data Access:** Mongoose ORM handles database operations, ensuring schema validation and relationship mapping.
+- **Security:** Implements CORS for cross-origin requests and Firebase Admin SDK to verify incoming user tokens and enforce role-based access.
+
+### 3. Database Layer
+- **NoSQL Database:** MongoDB (often hosted on MongoDB Atlas).
+- **Core Collections:**
+  - `Users`: Stores basic profile information.
+  - `Questions`: Stores coding problems, descriptions, constraints, and test cases.
+  - `Submissions`: Records every attempt made by a user, including the submitted code, language, status, and timestamp.
+
+### 4. External Services
+- **Judge0 API (via RapidAPI):** Acts as the remote execution engine. When a user submits code, it is sent securely to Judge0, compiled, run against predefined test cases, and the standard output/error is returned to CodeSpace.
+- **Firebase:** Manages the entire identity layer, abstracting away password hashing, session management, and OAuth integrations.
 
 ---
 
@@ -23,7 +57,7 @@ It allows **candidates** to solve problems and participate in contests, **compan
 | Layer                  | Technologies Used               |
 | ---------------------- | ------------------------------- |
 | **Frontend**           | React.js, Tailwind CSS, Vite, Monaco Editor, Axios |
-| **Backend**            | Node.js, Express.js             |
+| **Backend**            | Node.js, Express.js, CORS       |
 | **Database**           | MongoDB (Mongoose ORM)          |
 | **Code Execution**     | Judge0 API (via RapidAPI)       |
 | **Authentication**     | Firebase Authentication & Admin SDK |
@@ -36,8 +70,8 @@ It allows **candidates** to solve problems and participate in contests, **compan
 code_space/
 ├── backend/                  # Express.js Server
 │   ├── config/               # Database and Firebase configurations
-│   ├── controllers/          # Request handlers
-│   ├── models/               # Mongoose schemas (User, Question, Contest, Submission, Company)
+│   ├── controllers/          # Request handlers (e.g., questions, submissions)
+│   ├── models/               # Mongoose schemas (User, Question, Submission, etc.)
 │   ├── routes/               # API endpoints
 │   └── app.js                # Server entry point
 ├── src/                      # React Frontend
